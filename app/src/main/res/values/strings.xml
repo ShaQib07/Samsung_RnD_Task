@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Samsung RnD Task</string>
+    <string name="no_item">Sorry! No item found</string>
+    <string name="something_went_wrong">Oops! Something went wrong</string>
+    <string name="photo_albums">Photo Albums</string>
+    <string name="album">From the album</string>
+    <string name="titled">Titled</string>
+</resources>
