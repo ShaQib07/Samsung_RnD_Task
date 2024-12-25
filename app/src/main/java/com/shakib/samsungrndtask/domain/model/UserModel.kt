@@ -1,6 +1,6 @@
 package com.shakib.samsungrndtask.domain.model
 
-// Domain layer model to keep the domain layer separate from other layers
+// Domain layer models to keep the domain layer separate from other layers
 data class UserModel(
     val id: Int,
     val name: String,
@@ -12,7 +12,6 @@ data class UserModel(
     val company: CompanyModel
 )
 
-// Domain layer model to keep the domain layer separate from other layers
 data class AddressModel(
     val street: String,
     val suite: String,
@@ -21,13 +20,11 @@ data class AddressModel(
     val geo: GeoModel
 )
 
-// Domain layer model to keep the domain layer separate from other layers
 data class GeoModel(
     val lat: String,
     val lng: String
 )
 
-// Domain layer model to keep the domain layer separate from other layers
 data class CompanyModel(
     val name: String,
     val catchPhrase: String,

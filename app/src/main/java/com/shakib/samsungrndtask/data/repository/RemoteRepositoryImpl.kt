@@ -5,25 +5,52 @@ import com.shakib.samsungrndtask.data.model.AlbumDTO
 import com.shakib.samsungrndtask.data.model.PhotoDTO
 import com.shakib.samsungrndtask.data.model.UserDTO
 import com.shakib.samsungrndtask.data.model.toDomainModel
-import com.shakib.samsungrndtask.domain.model.AlbumModel
-import com.shakib.samsungrndtask.domain.model.PhotoModel
-import com.shakib.samsungrndtask.domain.model.UserModel
+import com.shakib.samsungrndtask.di.IoDispatcher
+import com.shakib.samsungrndtask.domain.model.PhotoAlbumModel
+import com.shakib.samsungrndtask.domain.model.ResponseState
 import com.shakib.samsungrndtask.domain.repository.Repository
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /*
-    Repository implementation in data layer that uses the remote data source to
-    keep the implementation details abstract from domain layer.
+    Repository implementation in the data layer that uses the remote data source to
+    keep the implementation details abstract from the domain layer.
 */
-class RemoteRepositoryImpl @Inject constructor(private val api: Api) : Repository {
-    override suspend fun getPhotos(): List<PhotoModel> =
-        withContext(Dispatchers.IO) { api.getPhotos().map(PhotoDTO::toDomainModel) }
+class RemoteRepositoryImpl @Inject constructor(
+    private val api: Api,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
+) : Repository {
+    override val photoAlbumList: MutableStateFlow<ResponseState<List<PhotoAlbumModel>>> =
+        MutableStateFlow(ResponseState.Loading)
 
-    override suspend fun getAlbums(): List<AlbumModel> =
-        withContext(Dispatchers.IO) { api.getAlbums().map(AlbumDTO::toDomainModel) }
+    override suspend fun fetchAndUpdatePhotoAlbumList() {
+        val result = runCatching { fetchData() }
+        result.onSuccess { photoAlbumList.emit(ResponseState.Success(it)) }
+        result.onFailure { photoAlbumList.emit(ResponseState.Error(it)) }
+    }
 
-    override suspend fun getUsers(): List<UserModel> =
-        withContext(Dispatchers.IO) { api.getUsers().map(UserDTO::toDomainModel) }
+    private suspend fun fetchData() = withContext(ioDispatcher) {
+        val results = awaitAll(
+            async { api.getPhotos() },
+            async { api.getAlbums() },
+            async { api.getUsers() }
+        )
+
+        val userMap = (results[2] as List<UserDTO>).associateBy { it.id }
+        val photoMap = (results[0] as List<PhotoDTO>).groupBy { it.albumId }
+        val photoAlbums = (results[1] as List<AlbumDTO>).map { album ->
+            PhotoAlbumModel(
+                id = album.id,
+                title = album.title,
+                user = userMap[album.userId]?.toDomainModel(),
+                photos = photoMap[album.id]?.map { it.toDomainModel() }
+            )
+        }
+
+        photoAlbums
+    }
 }
