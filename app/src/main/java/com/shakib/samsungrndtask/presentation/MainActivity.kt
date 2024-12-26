@@ -10,7 +10,6 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.shakib.samsungrndtask.BuildConfig
-import com.shakib.samsungrndtask.domain.usecase.GetPhotoAlbumsUseCase
 import com.shakib.samsungrndtask.presentation.theme.SamsungRDTaskTheme
 import com.shakib.samsungrndtask.presentation.views.screens.photoAlbumList.PhotoAlbumListScreen
 import com.shakib.samsungrndtask.service.DataFetchIntentService
