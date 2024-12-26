@@ -15,10 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SamsungRDTask"
         tools:targetApi="31" >
-        <service
-            android:name=".service.NetworkIntentService"
-            android:exported="false" >
-        </service>
 
         <activity
             android:name=".presentation.MainActivity"
@@ -30,6 +26,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".service.DataFetchIntentService"
+            android:exported="false" >
+        </service>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <!-- If you are using androidx.startup to initialize other components -->
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
     </application>
 
 </manifest>

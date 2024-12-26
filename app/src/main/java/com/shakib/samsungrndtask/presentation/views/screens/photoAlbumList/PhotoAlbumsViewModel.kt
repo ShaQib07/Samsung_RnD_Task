@@ -22,10 +22,10 @@ class PhotoAlbumsViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     init {
-        getPhotoAlbums()
+        loadPhotoAlbums()
     }
 
-    private fun getPhotoAlbums() {
+    private fun loadPhotoAlbums() {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
             observePhotoAlbumsUseCase().collectLatest { responseState ->

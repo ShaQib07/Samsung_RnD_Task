@@ -1,7 +1,7 @@
 package com.shakib.samsungrndtask.service
 
 import android.app.IntentService
-import com.shakib.samsungrndtask.di.IoDispatcher
+import com.shakib.samsungrndtask.di.qualifier.IoDispatcher
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope

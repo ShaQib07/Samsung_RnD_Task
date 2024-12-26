@@ -1,4 +1,4 @@
-package com.shakib.samsungrndtask.di
+package com.shakib.samsungrndtask.di.qualifier
 
 import javax.inject.Qualifier
 

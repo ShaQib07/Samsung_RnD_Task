@@ -1,5 +1,9 @@
-package com.shakib.samsungrndtask.di
+package com.shakib.samsungrndtask.di.module
 
+import com.shakib.samsungrndtask.di.qualifier.DefaultDispatcher
+import com.shakib.samsungrndtask.di.qualifier.IoDispatcher
+import com.shakib.samsungrndtask.di.qualifier.MainDispatcher
+import com.shakib.samsungrndtask.di.qualifier.MainImmediateDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -5,7 +5,7 @@ import com.shakib.samsungrndtask.data.model.AlbumDTO
 import com.shakib.samsungrndtask.data.model.PhotoDTO
 import com.shakib.samsungrndtask.data.model.UserDTO
 import com.shakib.samsungrndtask.data.model.toDomainModel
-import com.shakib.samsungrndtask.di.IoDispatcher
+import com.shakib.samsungrndtask.di.qualifier.IoDispatcher
 import com.shakib.samsungrndtask.domain.model.PhotoAlbumModel
 import com.shakib.samsungrndtask.domain.model.ResponseState
 import com.shakib.samsungrndtask.domain.repository.Repository

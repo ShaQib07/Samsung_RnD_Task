@@ -1,4 +1,4 @@
-package com.shakib.samsungrndtask.di
+package com.shakib.samsungrndtask.di.module
 
 import com.shakib.samsungrndtask.data.repository.RemoteRepositoryImpl
 import com.shakib.samsungrndtask.domain.repository.Repository
