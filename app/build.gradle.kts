@@ -41,7 +41,7 @@ android {
             dimension = "version"
             applicationIdSuffix = ".dev"
             buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
-            buildConfigField("Boolean", "USE_WORK_MANAGER", "true")
+            buildConfigField("Boolean", "USE_WORK_MANAGER", "false")
         }
         create("staging") {
             manifestPlaceholders += mapOf(
@@ -60,7 +60,6 @@ android {
             )
             dimension = "version"
             applicationIdSuffix = ".production"
-            //signingConfig signingConfigs.production
             buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
             buildConfigField("Boolean", "USE_WORK_MANAGER", "false")
         }
@@ -118,15 +117,4 @@ dependencies {
     testImplementation(libs.coroutine.test)
 
     testImplementation(libs.mockk)
-    androidTestImplementation(libs.mockk.android)
-
-    // Kotlin Coroutines test dependency (optional, for coroutine testing)
-    // testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3"
-
-    // JUnit for unit testing
-    // testImplementation 'junit:junit:4.13.2'
-
-    // AndroidX Test dependencies (optional)
-    // androidTestImplementation "androidx.test.ext:junit:1.1.5"
-    // androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
 }

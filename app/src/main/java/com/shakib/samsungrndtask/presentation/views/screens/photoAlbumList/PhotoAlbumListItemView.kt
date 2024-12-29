@@ -73,7 +73,7 @@ fun PhotoAlbumListItemView(photoAlbum: PhotoAlbum) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "By",
+                    text = stringResource(R.string.by),
                     textAlign = TextAlign.Center,
                     fontStyle = FontStyle.Italic,
                     style = MaterialTheme.typography.bodySmall,

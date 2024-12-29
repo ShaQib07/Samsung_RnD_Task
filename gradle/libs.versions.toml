@@ -55,7 +55,6 @@ coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutineTest" }
 
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
-mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

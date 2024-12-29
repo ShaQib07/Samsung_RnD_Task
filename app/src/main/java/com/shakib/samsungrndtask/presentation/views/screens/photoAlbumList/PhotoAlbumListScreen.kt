@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -67,7 +68,7 @@ internal fun PhotoAlbumListView(state: PhotoAlbumListScreenState) {
                 }
 
             if (state.isLoading)
-                CircularProgressIndicator()
+                CircularProgressIndicator(modifier = Modifier.testTag("loading_indicator"))
 
             if (state.error.isNotEmpty())
                 ErrorView(modifier = Modifier.padding(20.dp), message = state.error)
@@ -77,7 +78,7 @@ internal fun PhotoAlbumListView(state: PhotoAlbumListScreenState) {
 
 @Preview(showBackground = true)
 @Composable
-fun BookListScreenPreview() {
+fun PhotoAlbumListPreview() {
     SamsungRDTaskTheme {
         PhotoAlbumListView(state = PhotoAlbumListScreenState())
     }

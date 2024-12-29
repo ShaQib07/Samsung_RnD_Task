@@ -3,11 +3,13 @@ package com.shakib.samsungrndtask.domain.usecase
 import com.shakib.samsungrndtask.domain.model.PhotoAlbumModel
 import com.shakib.samsungrndtask.domain.model.ResponseState
 import com.shakib.samsungrndtask.domain.repository.Repository
+import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -20,6 +22,11 @@ class ObservePhotoAlbumsUseCaseTest {
     @Before
     fun setup() {
         observePhotoAlbumsUseCase = ObservePhotoAlbumsUseCase(repository)
+    }
+
+    @After
+    fun tearDown() {
+        clearAllMocks()
     }
 
     @Test

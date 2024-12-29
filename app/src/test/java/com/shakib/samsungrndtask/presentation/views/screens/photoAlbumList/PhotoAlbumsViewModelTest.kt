@@ -12,6 +12,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -34,11 +35,13 @@ class PhotoAlbumsViewModelTest {
 
     @After
     fun tearDown() {
+        Dispatchers.resetMain()
         clearAllMocks()
     }
 
     @Test
     fun `init should call loadPhotoAlbums and update state to loading`() = runTest {
+        // Arrange
         val fakeLoadingFlow = getFakeResponseState(State.LOADING)
         val fakeSuccessFlow = getFakeResponseState(State.SUCCESS)
 
@@ -49,35 +52,43 @@ class PhotoAlbumsViewModelTest {
             fakeSuccessFlow
         }
 
+        // Act
         viewModel = PhotoAlbumsViewModel(observePhotoAlbumsUseCase)
         runCurrent()
 
+        // Assert
         assertEquals(true, viewModel.state.value.isLoading)
         assertEquals(emptyList<PhotoAlbum>(), viewModel.state.value.photoAlbums)
     }
 
     @Test
     fun `init should call loadPhotoAlbums and update state to success`() = runTest {
+        // Arrange
         val fakeSuccessFlow = getFakeResponseState(State.SUCCESS)
 
         coEvery { observePhotoAlbumsUseCase() } returns fakeSuccessFlow
 
+        // Act
         viewModel = PhotoAlbumsViewModel(observePhotoAlbumsUseCase)
         runCurrent()
 
+        // Assert
         assertEquals(1, viewModel.state.value.photoAlbums.size)
         assertEquals("Album Title", viewModel.state.value.photoAlbums.first().albumName)
     }
 
     @Test
     fun `init should call loadPhotoAlbums and update state to error`() = runTest {
+        // Arrange
         val fakeErrorFlow = getFakeResponseState(State.ERROR)
 
         coEvery { observePhotoAlbumsUseCase() } returns fakeErrorFlow
 
+        // Act
         viewModel = PhotoAlbumsViewModel(observePhotoAlbumsUseCase)
         runCurrent()
 
+        // Assert
         assertEquals("Error", viewModel.state.value.error)
         assertEquals(emptyList<PhotoAlbum>(), viewModel.state.value.photoAlbums)
     }
@@ -94,6 +105,6 @@ class PhotoAlbumsViewModelTest {
         listOf(PhotoAlbumModel(id = 1, title = "Album Title", user = null, photos = null))
 }
 
-enum class State {
+private enum class State {
     LOADING, SUCCESS, ERROR
 }

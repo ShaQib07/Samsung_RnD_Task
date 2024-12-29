@@ -1,9 +1,11 @@
 package com.shakib.samsungrndtask.domain.usecase
 
 import com.shakib.samsungrndtask.domain.repository.Repository
+import io.mockk.clearAllMocks
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
@@ -15,6 +17,11 @@ class GetPhotoAlbumsUseCaseTest {
     @Before
     fun setup() {
         getPhotoAlbumsUseCase = GetPhotoAlbumsUseCase(repository)
+    }
+
+    @After
+    fun tearDown() {
+        clearAllMocks()
     }
 
     @Test

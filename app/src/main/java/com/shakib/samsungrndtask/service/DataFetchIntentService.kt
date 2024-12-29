@@ -7,6 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 // Intent service responsible for fetching data from the network
+// But for this type of tasks, it is now recommended to use WorkManager
 @AndroidEntryPoint
 class DataFetchIntentService : CoroutineIntentService("NetworkIntentService") {
 

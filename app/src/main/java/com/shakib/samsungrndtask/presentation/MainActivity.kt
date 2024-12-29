@@ -30,6 +30,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        // Switch between WorkManager and IntentService based on the build configuration
         if (BuildConfig.USE_WORK_MANAGER) {
             fetchDataWithWorkManager()
         } else {

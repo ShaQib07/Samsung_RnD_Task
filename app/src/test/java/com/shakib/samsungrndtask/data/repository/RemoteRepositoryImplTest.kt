@@ -9,6 +9,7 @@ import com.shakib.samsungrndtask.data.model.PhotoDTO
 import com.shakib.samsungrndtask.data.model.UserDTO
 import com.shakib.samsungrndtask.domain.model.PhotoAlbumModel
 import com.shakib.samsungrndtask.domain.model.ResponseState
+import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -40,6 +41,7 @@ class RemoteRepositoryImplTest {
     @After
     fun tearDown() {
         Dispatchers.resetMain()
+        clearAllMocks()
     }
 
     @Test
