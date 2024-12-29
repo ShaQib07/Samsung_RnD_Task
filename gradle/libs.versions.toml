@@ -16,6 +16,8 @@ androidxHilt = "1.2.0"
 workManager = "2.10.0"
 hiltWorkManager = "1.2.0"
 coil = "2.6.0"
+coroutineTest = "1.7.3"
+mockk = "1.13.14"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -49,6 +51,11 @@ hilt-work-manager = { group = "androidx.hilt", name = "hilt-work", version.ref =
 hilt-work-manager-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltWorkManager" }
 
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutineTest" }
+
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
