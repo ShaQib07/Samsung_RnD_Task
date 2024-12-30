@@ -4,5 +4,6 @@
     <string name="something_went_wrong">Oops! Something went wrong</string>
     <string name="photo_albums">Photo Albums</string>
     <string name="album">From the album</string>
+    <string name="by">By</string>
     <string name="titled">Titled</string>
 </resources>

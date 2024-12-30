@@ -1,13 +1,11 @@
 package com.shakib.samsungrndtask.domain.repository
 
-import com.shakib.samsungrndtask.domain.model.AlbumModel
-import com.shakib.samsungrndtask.domain.model.PhotoModel
-import com.shakib.samsungrndtask.domain.model.UserModel
+import com.shakib.samsungrndtask.domain.model.PhotoAlbumModel
+import com.shakib.samsungrndtask.domain.model.ResponseState
+import kotlinx.coroutines.flow.MutableStateFlow
 
 interface Repository {
-    suspend fun getPhotos(): List<PhotoModel>
+    val photoAlbumList: MutableStateFlow<ResponseState<List<PhotoAlbumModel>>>
 
-    suspend fun getAlbums(): List<AlbumModel>
-
-    suspend fun getUsers(): List<UserModel>
+    suspend fun fetchAndUpdatePhotoAlbumList()
 }

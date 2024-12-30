@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -43,6 +44,7 @@ fun PhotoAlbumListItemView(photoAlbum: PhotoAlbum) {
                 modifier = Modifier.weight(1f),
                 model = photoAlbum.photoThumbnailUrl,
                 contentDescription = photoAlbum.photoTitle,
+                placeholder = painterResource(R.drawable.ic_placeholder_image),
                 contentScale = ContentScale.Crop,
             )
 
@@ -71,7 +73,7 @@ fun PhotoAlbumListItemView(photoAlbum: PhotoAlbum) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "By",
+                    text = stringResource(R.string.by),
                     textAlign = TextAlign.Center,
                     fontStyle = FontStyle.Italic,
                     style = MaterialTheme.typography.bodySmall,

@@ -41,6 +41,7 @@ android {
             dimension = "version"
             applicationIdSuffix = ".dev"
             buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
+            buildConfigField("Boolean", "USE_WORK_MANAGER", "false")
         }
         create("staging") {
             manifestPlaceholders += mapOf(
@@ -50,6 +51,7 @@ android {
             dimension = "version"
             applicationIdSuffix = ".staging"
             buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
+            buildConfigField("Boolean", "USE_WORK_MANAGER", "false")
         }
         create("production") {
             manifestPlaceholders += mapOf(
@@ -58,8 +60,8 @@ android {
             )
             dimension = "version"
             applicationIdSuffix = ".production"
-            //signingConfig signingConfigs.production
             buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
+            buildConfigField("Boolean", "USE_WORK_MANAGER", "false")
         }
     }
 
@@ -106,5 +108,13 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
 
+    implementation(libs.work.manager)
+    implementation(libs.hilt.work.manager)
+    ksp(libs.hilt.work.manager.compiler)
+
     implementation(libs.coil)
+
+    testImplementation(libs.coroutine.test)
+
+    testImplementation(libs.mockk)
 }

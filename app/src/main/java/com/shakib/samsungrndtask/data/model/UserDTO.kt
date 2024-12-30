@@ -5,7 +5,7 @@ import com.shakib.samsungrndtask.domain.model.CompanyModel
 import com.shakib.samsungrndtask.domain.model.GeoModel
 import com.shakib.samsungrndtask.domain.model.UserModel
 
-// Data layer model to parse API response
+// Data layer models to parse API response
 data class UserDTO(
     val id: Int,
     val name: String,
@@ -17,7 +17,27 @@ data class UserDTO(
     val company: CompanyDTO
 )
 
-// Use this function to map data layer model to domain layer model
+data class AddressDTO(
+    val street: String,
+    val suite: String,
+    val city: String,
+    val zipcode: String,
+    val geo: GeoDTO
+)
+
+data class GeoDTO(
+    val lat: String,
+    val lng: String
+)
+
+data class CompanyDTO(
+    val name: String,
+    val catchPhrase: String,
+    val bs: String
+)
+
+
+// Use these functions to map data layer models to domain layer models
 fun UserDTO.toDomainModel() = UserModel(
     id = id,
     name = name,
@@ -29,17 +49,6 @@ fun UserDTO.toDomainModel() = UserModel(
     company = company.toDomainModel()
 )
 
-
-// Data layer model to parse API response
-data class AddressDTO(
-    val street: String,
-    val suite: String,
-    val city: String,
-    val zipcode: String,
-    val geo: GeoDTO
-)
-
-// Use this function to map data layer model to domain layer model
 fun AddressDTO.toDomainModel() = AddressModel(
     street = street,
     suite = suite,
@@ -48,28 +57,11 @@ fun AddressDTO.toDomainModel() = AddressModel(
     geo = geo.toDomainModel()
 )
 
-
-// Data layer model to parse API response
-data class GeoDTO(
-    val lat: String,
-    val lng: String
-)
-
-// Use this function to map data layer model to domain layer model
 fun GeoDTO.toDomainModel() = GeoModel(
     lat = lat,
     lng = lng
 )
 
-
-// Data layer model to parse API response
-data class CompanyDTO(
-    val name: String,
-    val catchPhrase: String,
-    val bs: String
-)
-
-// Use this function to map data layer model to domain layer model
 fun CompanyDTO.toDomainModel() = CompanyModel(
     name = name,
     catchPhrase = catchPhrase,

@@ -1,4 +1,4 @@
-package com.shakib.samsungrndtask.di
+package com.shakib.samsungrndtask.di.module
 
 import com.shakib.samsungrndtask.BuildConfig
 import com.shakib.samsungrndtask.data.dataSource.remote.Api
